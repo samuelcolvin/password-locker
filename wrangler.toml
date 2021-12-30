@@ -1,0 +1,12 @@
+name = "password-locker"
+type = "javascript"
+zone_id = ""
+account_id = "d6252a570c309c113744c9e11317e271"
+route = ""
+workers_dev = true
+
+[build]
+command = "yarn build"
+
+[build.upload]
+format = "service-worker"

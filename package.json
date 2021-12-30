@@ -1,0 +1,78 @@
+{
+  "name": "password-locker",
+  "version": "1.0.0",
+  "description": "Make passwords available only when you need them",
+  "main": "dist/worker.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "webpack",
+    "format": "prettier --write '*.{json,js,toml}' 'src/**/*.ts' 'test/**/*.ts'",
+    "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js,toml}' 'src/**/*.ts' 'test/**/*.ts'",
+    "test": "jest --verbose",
+    "all": "yarn lint && yarn test"
+  },
+  "author": "Samuel Colvin",
+  "license": "MIT",
+  "eslintConfig": {
+    "root": true,
+    "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "globals": {
+      "xhr_calls": true
+    },
+    "extends": [
+      "typescript",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-namespace": [
+        "error",
+        {
+          "allowDeclarations": true
+        }
+      ]
+    }
+  },
+  "jest": {
+    "testRegex": "/tests/.*\\.test\\.ts$",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "preset": "ts-jest"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "printWidth": 119,
+    "bracketSpacing": false,
+    "arrowParens": "avoid"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^3.3.0",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "edge-mock": "^0.0.15",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-typescript": "^3.0.0",
+    "jest": "^27.4.5",
+    "jest-each": "^27.4.2",
+    "prettier": "^2.5.1",
+    "prettier-plugin-toml": "^0.3.1",
+    "ts-jest": "^27.1.2",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  }
+}

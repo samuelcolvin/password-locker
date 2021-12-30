@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./ts-build",
+    "module": "commonjs",
+    "target": "esnext",
+    "lib": ["esnext"],
+    "alwaysStrict": true,
+    "strict": true,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "baseUrl": "src",
+    "types": ["@cloudflare/workers-types", "@types/jest", "node"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "test"]
+}
