@@ -1,13 +1,13 @@
 {
   "name": "password-locker",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Make passwords available only when you need them",
   "main": "dist/worker.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "webpack",
-    "format": "prettier --write '*.{json,js,toml}' 'src/**/*.ts' 'test/**/*.ts'",
-    "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js,toml}' 'src/**/*.ts' 'test/**/*.ts'",
+    "format": "prettier --write '*.{json,js,toml}' 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
+    "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js,toml}' 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
     "test": "jest --verbose",
     "all": "yarn lint && yarn test"
   },
@@ -57,11 +57,12 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@cloudflare/workers-types": "^3.3.0",
+    "@cloudflare/workers-types": "2.2.2",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "edge-mock": "^0.0.15",
+    "edgerender": "^0.0.11",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-config-typescript": "^3.0.0",
@@ -69,6 +70,7 @@
     "jest-each": "^27.4.2",
     "prettier": "^2.5.1",
     "prettier-plugin-toml": "^0.3.1",
+    "sass": "^1.45.2",
     "ts-jest": "^27.1.2",
     "ts-loader": "^9.2.2",
     "typescript": "^4.3.2",

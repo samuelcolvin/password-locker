@@ -4,6 +4,13 @@ zone_id = ""
 account_id = "d6252a570c309c113744c9e11317e271"
 route = ""
 workers_dev = true
+kv_namespaces = [
+  { binding = "ASSETS", id = "532e8bdff5e04372abeb493c26df8a97", preview_id = "edf5d5553f464306be81dfec1354bd8c" }
+]
+
+[site]
+bucket = "./dist/assets"
+entry-point = "."
 
 [build]
 command = "yarn build"

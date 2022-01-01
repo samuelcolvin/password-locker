@@ -1,25 +1,39 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/index.ts',
   output: {
     filename: 'worker.js',
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve('.', 'dist'),
+    publicPath: '/',
+    assetModuleFilename: 'assets/[name].[hash][ext][query]',
+    clean: true,
   },
-  devtool: 'cheap-module-source-map',
+  devtool: false,
   mode: 'development',
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.ts', '.tsx', '.js'],
+    modules: ['edgerender', 'node_modules'],
   },
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          // transpileOnly is useful to skip typescript checks occasionally:
           // transpileOnly: true,
         },
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name].[hash].css[query]',
+        },
+        loader: 'edgerender/src/webpack/custom-sass-loader',
+      },
+      {
+        test: /\.(css|png|ico|jpe?g|svg|woff2?|ttf)$/i,
+        type: 'asset/resource',
       },
     ],
   },
