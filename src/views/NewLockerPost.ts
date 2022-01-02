@@ -10,7 +10,7 @@ export default async function NewLockerPost({request, url}: RequestContext): Pro
     throw new HttpError(422, 'Missing required fields "title" and "email"')
   }
 
-  const {public_key, secret_key} = await create_locker(
+  const [{public_key}, secret_key] = await create_locker(
     title as string,
     email as string,
     request.headers.get('cf-connecting-ip') as string,

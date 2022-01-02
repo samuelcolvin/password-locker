@@ -1,5 +1,5 @@
 import {RequestContext} from 'edgerender/handle'
-import {get_locker, record_password_request, Locker, get_locker_password} from '../locker'
+import {get_locker, record_password_request, Locker, get_locker_password, check_secret_key} from '../locker'
 import {HttpError, json_response} from 'edgerender/response'
 
 export default async function NewLocker({match, request}: RequestContext) {
@@ -23,12 +23,13 @@ export default async function NewLocker({match, request}: RequestContext) {
     await record_password_request(public_key, ip, ua, 401)
     return json_response({message: 'Authorisation Header missing'}, 401)
   }
-  if (auth.replace(/^bearer /i, '') != locker.secret_key) {
+  const secret_key = auth.replace(/^bearer /i, '')
+  if (!(await check_secret_key(locker, secret_key))) {
     await record_password_request(public_key, ip, ua, 403)
     return json_response({message: 'Incorrect secret key (from Authorisation Header)'}, 403)
   }
 
-  const password = await get_locker_password(public_key)
+  const password = await get_locker_password(public_key, secret_key)
   if (password) {
     await record_password_request(public_key, ip, ua, 200)
     return json_response({password})
@@ -37,5 +38,3 @@ export default async function NewLocker({match, request}: RequestContext) {
     return json_response({message: 'Password not currently available'}, 410)
   }
 }
-
-

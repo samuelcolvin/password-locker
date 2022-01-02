@@ -1,12 +1,17 @@
 import {RequestContext} from 'edgerender/handle'
-import {get_locker, locker_status} from '../locker'
+import {check_secret_key, get_locker, locker_status} from '../locker'
 
 export default async function NewLocker({match, url}: RequestContext) {
   const {public_key} = match
   const locker = await get_locker(public_key)
 
   const secret_key = url.searchParams.get('secret_key')
-  const sk_mismatch = !!(secret_key && locker.secret_key !== secret_key)
+
+  let sk_mismatch = false
+  if (secret_key) {
+    sk_mismatch = !(await check_secret_key(locker, secret_key))
+  }
+
   const details = await locker_status(public_key)
   return (
     <div>
