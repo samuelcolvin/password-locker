@@ -28,15 +28,18 @@ const views: Views = {
     allow: ['GET', 'POST'],
   },
   '/get/{public_key}/': GetPassword,
-  '/fonts/{file_name:.+}': async ({request, url}) => {
-    const new_request = new Request(url.pathname)
+  '/fonts/{file_name:.+}': async ({request, url, assets}) => {
     const new_url = `https://smokeshow.helpmanual.io${url.pathname}`
-
-    new_request.headers.append('referer', 'https://smokeshow.helpmanual.io/')
-    new_request.headers.append('origin', 'https://smokeshow.helpmanual.io')
-    new_request.headers.append('user-agent', request.headers.get('user-agent') || '?')
-    // return await assets.cached_proxy(new_request, new_url)
-    return await fetch(new_url, new_request)
+    if (url.hostname == '127.0.0.1') {
+      // requests get blocked by cloudflare unless the request is recreated
+      const new_request = new Request(url.pathname)
+      new_request.headers.append('referer', 'https://smokeshow.helpmanual.io/')
+      new_request.headers.append('origin', 'https://smokeshow.helpmanual.io')
+      new_request.headers.append('user-agent', request.headers.get('user-agent') || '?')
+      return await fetch(new_url, new_request)
+    } else {
+      return await assets.cached_proxy(request, new_url)
+    }
   },
 }
 

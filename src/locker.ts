@@ -75,13 +75,11 @@ export async function set_locker_password(
   })
 }
 
-export async function get_locker_password(public_key: string, secret_key: string): Promise<string | null> {
+export async function get_locker_password(public_key: string, secret_key: string): Promise<string | void> {
   const {value, metadata} = await STORAGE.getWithMetadata(`locker:${public_key}:password`, 'arrayBuffer')
   if (value) {
     const {iv} = metadata as any
     return await decrypt(value, secret_key, hex2array(iv))
-  } else {
-    return null
   }
 }
 
