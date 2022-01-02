@@ -3,8 +3,6 @@ import {HttpError} from 'edgerender/response'
 import {create_locker} from '../locker'
 
 export default async function NewLockerPost({request, url}: RequestContext): Promise<Response> {
-  const arrayBuffer = await request.arrayBuffer()
-  console.log('request:', {arrayBuffer})
   const form = await request.formData()
   const title = form.get('title')
   const email = form.get('email')

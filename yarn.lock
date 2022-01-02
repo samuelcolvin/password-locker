@@ -1439,7 +1439,7 @@ cssstyle@^2.3.0:
   dependencies:
     cssom "~0.3.6"
 
-csstype@^3.0.8:
+csstype@^3.0.10:
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.10.tgz#2ad3a7bed70f35b965707c092e5f30b327c290e5"
   integrity sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==
@@ -1551,13 +1551,13 @@ edge-mock@^0.0.15:
     livereload "^0.9.3"
     node-fetch "^2.6.1"
 
-edgerender@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/edgerender/-/edgerender-0.0.11.tgz#5de2c8571f3c16a3cb27de9e81dc118b85d7b0c3"
-  integrity sha512-GI6kfvXspbTtopy/6WSSb5MxbZrv829LC+HozgLOAZq4cLS8HVe5q+Zu53B6h8f1LO6hZewR5T0rgTLK2wQKKA==
+edgerender@0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/edgerender/-/edgerender-0.0.12.tgz#35324428afb7dc2a22f8ecf99eaf473040980753"
+  integrity sha512-uOgv21HJoF/4LLvk72WuN/GA6krXl/6EENXYHLZN+BQ6UEALhCw0UuSA0pZQxQOyUYk9Rlkpq6eiZhwjCCD8+g==
   dependencies:
-    csstype "^3.0.8"
-    mime "^2.5.2"
+    csstype "^3.0.10"
+    mime "^3.0.0"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2896,7 +2896,7 @@ loader-runner@^4.2.0:
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-4.2.0.tgz#d7022380d66d14c5fb1d496b89864ebcfd478384"
   integrity sha512-92+huvxMvYlMzMt0iIOukcwYBFpkYJdpl2xsZ7LrlayO7E8SOv+JJUEK17B/dJIHAOLMfh2dZZ/Y18WgmGtYNw==
 
-loader-utils@^1.2.3:
+loader-utils@^1.1.0, loader-utils@^1.2.3:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.4.0.tgz#c579b5e34cb34b1a74edc6c1fb36bfa371d5a613"
   integrity sha512-qH0WSMBtn/oHuwjy/NucEgbx5dbxxnxup9s4PVXJUDHZBQY+s0NWA9rJf53RBnQZxfch7euUui7hpoAPvALZdA==
@@ -3037,10 +3037,10 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-mime@^2.5.2:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/mime/-/mime-2.6.0.tgz#a2a682a95cd4d0cb1d6257e28f83da7e35800367"
-  integrity sha512-USPkMeET31rOMiarsBNIHZKLGgvKc/LrjofAnBlOttf5ajRvqiRA8QsenbcooctK6d6Ts6aqZXBA+XbkKthiQg==
+mime@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mime/-/mime-3.0.0.tgz#b374550dca3a0c18443b0c950a6a58f1931cf7a7"
+  integrity sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==
 
 mimic-fn@^2.1.0:
   version "2.1.0"
@@ -3936,6 +3936,20 @@ typescript@^4.3.2:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
   integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
+
+uglify-js@^3.4.8:
+  version "3.14.5"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.14.5.tgz#cdabb7d4954231d80cb4a927654c4655e51f4859"
+  integrity sha512-qZukoSxOG0urUTvjc2ERMTcAy+BiFh3weWAkeurLwjrCba73poHmG3E36XEjd/JGukMzwTL7uCxZiAexj8ppvQ==
+
+uglify-loader@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/uglify-loader/-/uglify-loader-3.0.0.tgz#7a3a524797bdc3e8a75c242aad17b2abed9fce15"
+  integrity sha512-eE+Gt+rR0Yv7hfE8qxkl/FnNp+fX+9yH8hS9jZSngzy6gmYL9/m9/mQRnKj863k/vVSL7B0OEyGOC2Li0aQfSg==
+  dependencies:
+    loader-utils "^1.1.0"
+    source-map "^0.7.3"
+    uglify-js "^3.4.8"
 
 universalify@^0.1.2:
   version "0.1.2"

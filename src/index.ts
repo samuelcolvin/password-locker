@@ -4,6 +4,8 @@ import Index from './views/Index'
 import NewLockerGet from './views/NewLockerGet'
 import NewLockerPost from './views/NewLockerPost'
 import LockerDetails from './views/LockerDetails'
+import LockSetPassword from './views/LockSetPassword'
+import GetPassword from './views/GetPassword'
 import favicon_path from './assets/favicon.ico'
 
 declare const __STATIC_CONTENT_MANIFEST: any
@@ -23,10 +25,23 @@ const views: Views = {
     allow: 'POST',
   },
   '/locker/{public_key}/': LockerDetails,
-  '/fonts/{file_name:.+}': ({request, url, assets}) => {
-    return assets.cached_proxy(request, `https://smokeshow.helpmanual.io${url.pathname}`)
+  '/locker/{public_key}/set/': {
+    view: LockSetPassword,
+    allow: ['GET', 'POST'],
+  },
+  '/get/{public_key}/': GetPassword,
+  '/fonts/{file_name:.+}': async ({request, url, assets}) => {
+    const new_request = new Request(url.pathname)
+    const new_url = `https://smokeshow.helpmanual.io${url.pathname}`
+
+    new_request.headers.append('referer', 'https://smokeshow.helpmanual.io/')
+    new_request.headers.append('origin', 'https://smokeshow.helpmanual.io')
+    new_request.headers.append('user-agent', request.headers.get('user-agent') || '?')
+    // return await assets.cached_proxy(new_request, new_url)
+    return await fetch(new_url, new_request)
   },
 }
-const edge_render = new EdgeRender({views, assets, log: true, page: Page})
+
+const edge_render = new EdgeRender({views, assets, page: Page})
 
 addEventListener('fetch', edge_render.handler)

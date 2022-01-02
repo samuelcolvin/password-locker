@@ -32,8 +32,16 @@ module.exports = {
         loader: 'edgerender/src/webpack/custom-sass-loader',
       },
       {
-        test: /\.(css|png|ico|jpe?g|svg|woff2?|ttf|mjs)$/i,
+        test: /\.(css|png|ico|jpe?g|svg|woff2?|ttf)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.(mjs|browser\.js)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[base]?v=[hash]',
+        },
+        loader: 'uglify-loader',
       },
       {
         test: /\.md$/,
