@@ -18,7 +18,7 @@ export async function create_locker(
   email: string,
   ip: string,
   ua: string | null,
-): Promise<[Locker, string]> {
+): Promise<[string, string]> {
   const public_key = generate_public_key()
 
   const storage_key = `locker:${public_key}`
@@ -40,7 +40,7 @@ export async function create_locker(
   }
   console.log('creating locker', locker)
   await STORAGE.put(storage_key, JSON.stringify(locker))
-  return [locker, secret_key]
+  return [public_key, secret_key]
 }
 
 export async function get_locker(public_key: string): Promise<Locker> {

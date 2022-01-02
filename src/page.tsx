@@ -83,7 +83,7 @@ export function Page(children: JsxChunk, context: RequestContext) {
               </a>
             </header>
             <nav>
-              <a href="/new-locker/">
+              <a href="/locker/create/">
                 Create New Locker
                 <span className="htmx-indicator">...</span>
               </a>

@@ -1,8 +1,7 @@
 import {EdgeRender, AssetConfig, Views} from 'edgerender'
 import {Page} from './page'
 import Index from './views/Index'
-import NewLockerGet from './views/NewLockerGet'
-import NewLockerPost from './views/NewLockerPost'
+import CreateLocker from './views/CreateLocker'
 import LockerDetails from './views/LockerDetails'
 import LockSetPassword from './views/LockSetPassword'
 import GetPassword from './views/GetPassword'
@@ -19,10 +18,9 @@ const assets: AssetConfig = {
 const views: Views = {
   '/': Index,
   '/favicon.ico': ({assets, request}) => assets.response(request, favicon_path),
-  '/new-locker/': NewLockerGet,
-  '/new-locker/submit/': {
-    view: NewLockerPost,
-    allow: 'POST',
+  '/locker/create/': {
+    view: CreateLocker,
+    allow: ['GET', 'POST'],
   },
   '/locker/{public_key}/': LockerDetails,
   '/locker/{public_key}/set/': {
@@ -30,7 +28,7 @@ const views: Views = {
     allow: ['GET', 'POST'],
   },
   '/get/{public_key}/': GetPassword,
-  '/fonts/{file_name:.+}': async ({request, url, assets}) => {
+  '/fonts/{file_name:.+}': async ({request, url}) => {
     const new_request = new Request(url.pathname)
     const new_url = `https://smokeshow.helpmanual.io${url.pathname}`
 
