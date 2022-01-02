@@ -9,7 +9,8 @@
     "format": "prettier --write '*.{json,js,toml}' 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
     "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js,toml}' 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
     "test": "jest --verbose",
-    "all": "yarn lint && yarn test"
+    "all": "yarn lint && yarn test",
+    "dev": "edge-mock-server"
   },
   "author": "Samuel Colvin",
   "license": "MIT",
@@ -66,10 +67,13 @@
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-config-typescript": "^3.0.0",
+    "html-loader": "^3.0.1",
     "jest": "^27.4.5",
     "jest-each": "^27.4.2",
+    "markdown-loader": "^6.0.0",
     "prettier": "^2.5.1",
     "prettier-plugin-toml": "^0.3.1",
+    "raw-loader": "^4.0.2",
     "sass": "^1.45.2",
     "ts-jest": "^27.1.2",
     "ts-loader": "^9.2.2",

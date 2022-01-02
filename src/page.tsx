@@ -1,7 +1,7 @@
 import {JsxChunk} from 'edgerender/jsx'
-import main_styles from './styles/main.scss'
-// import switch_mjs from './switch.mjs'
 import {RequestContext} from 'edgerender/handle'
+import main_styles from './styles/main.scss'
+import switch_mjs from './assets/switch.mjs'
 
 const github_path = `
 M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6
@@ -25,6 +25,18 @@ const GitHubSvg = () => (
   </svg>
 )
 
+const moon_path = `
+M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 
+23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 
+7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z
+`
+
+const MoonSvg = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d={moon_path} />
+  </svg>
+)
+
 export function Page(children: JsxChunk, context: RequestContext) {
   if (context.is_hx_request) {
     return children
@@ -45,26 +57,41 @@ export function Page(children: JsxChunk, context: RequestContext) {
         <link rel="preload" href="/fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-        <link rel="preload" href={main_styles} as="style" crossOrigin="anonymous"/>
-        <link rel="stylesheet" href={main_styles} crossOrigin="anonymous"/>
+        <link rel="preload" href={main_styles} as="style" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={main_styles} crossOrigin="anonymous" />
 
         <script src="https://unpkg.com/htmx.org@1.4.1" crossOrigin="anonymous" />
       </head>
       <body className="dark">
         <main>
-          <div id="slider" />
-          <article className={['foo', false, 'bar', true]}>
+          <nav>
+            <div className="dark-control">
+              <MoonSvg />
+              <div className="switch">
+                <span id="slider" />
+              </div>
+            </div>
+          </nav>
+          <article hxTarget="#page" hxPushUrl="true" hxBoost={true}>
             <header>
-              <a href="https://github.com/samuelcolvin/edgerender">
+              <a href="/" className="weight-medium">
+                Password Locker <span className="htmx-indicator">...</span>
+              </a>
+              <a href="https://github.com/samuelcolvin/password-locker">
                 <GitHubSvg />
-                <span>samuelcolvin/edgerender</span>
+                <span>samuelcolvin/password-locker</span>
               </a>
             </header>
-            <h1>EdgeRender Demo</h1>
+            <nav>
+              <a href="/new-locker/">
+                Create New Locker
+                <span className="htmx-indicator">...</span>
+              </a>
+            </nav>
             <div id="page">{children}</div>
           </article>
         </main>
-        {/*<script src={switch_mjs}/>*/}
+        <script type="module" src={switch_mjs} />
       </body>
     </html>
   )

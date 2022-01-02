@@ -32,8 +32,19 @@ module.exports = {
         loader: 'edgerender/src/webpack/custom-sass-loader',
       },
       {
-        test: /\.(css|png|ico|jpe?g|svg|woff2?|ttf)$/i,
+        test: /\.(css|png|ico|jpe?g|svg|woff2?|ttf|mjs)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+          {
+            loader: 'markdown-loader',
+          },
+        ],
       },
     ],
   },

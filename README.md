@@ -1,3 +1,3 @@
-# password-locker
+# Password Locker
 
 Coming soon...
